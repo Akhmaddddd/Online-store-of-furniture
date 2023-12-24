@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block slider %}
+{% endblock slider %}
+
+
+{% block main %}
+
+<main class="main">
+    <div class="container">
+        <section class="basket">
+            <div class="basket__text">
+                <h1 class="basket__title">Ваша корзина</h1>
+                <span class="basket__count"><span>{{ order.get_cart_total_quantity }}</span> предмета</span>
+            </div>
+            <div class="basket__items">
+                {% for item in products %}
+                <div class="basket__item">
+                    <a class="basket__item-img">
+                        <img src="{{ item.product.get_image_product }}" alt="product">
+                    </a>
+                    <div class="basket__item-content">
+                        <div class="basket__item-text">
+                            <h2 class="basket__item-title">{{ item.product.title }}</h2>
+                            <p class="basket__item-price">
+
+
+                                <span class="price"><span>{{ item.get_total_price }}</span>$</span>
+
+                            </p>
+                        </div>
+                        <div class="basket__options">
+                            <p class="basket__options-count">
+                                Цена за продукт:<span>{{ item.product.price }} $</span>
+                            </p>
+
+
+                            <div class="basket__options-count d-flex">
+
+
+                                Количество: <span>{{ item.quantity }}</span>
+
+
+                            </div>
+
+
+                            <p class="basket__options-size">
+                                Размер(Ш×Д×В): <span>{{ item.product.width }}×{{ item.product.length }}×{{ item.product.height }}</span>
+                            </p>
+                        </div>
+                    </div>
+                    {% if 'cart' in request.path %}
+                    <div class="basket__buttons">
+                        {% if item.product.quantity > 0 %}
+                        <a href="{% url 'to_cart' item.product.pk 'add' %}" class="basket__add">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        {% endif %}
+
+                        <a href="{% url 'to_cart' item.product.pk 'remove' %}" class="basket__remove">
+                            <i class="fas fa-minus"></i>
+                        </a>
+                    </div>
+                    {% endif %}
+
+                </div>
+                {% endfor %}
+            </div>
+
+            <form class="products__form">
+                {% if products %}
+                <a href="{% url 'clear_cart' %}" class="btn products__form-btn-left">Очистить корзину</a>
+                <span>Итоговая стоимость:<span
+                        class="products__form-price">{{ order.get_cart_total_price }} $</span> </span>
+                <a href="{% url 'checkout' %}" class="btn products__form-btn">Оформить заказ</a>
+                {% endif %}
+            </form>
+        </section>
+        <!-- /.basket -->
+
+
+        <!-- /.products -->
+
+    </div>
+    <!-- /.container -->
+</main>
+
+
+{% endblock main %}

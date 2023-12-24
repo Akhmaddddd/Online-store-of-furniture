@@ -1,0 +1,19 @@
+<form method="post" action="" enctype="multipart/form-data" class="registeration__form active">
+    <h2 class="registeration__title products__title">Авторизация</h2>
+    <div class="registeration__form-grid">
+        {% csrf_token %}
+
+        {% for field in login_form %}
+        <div class="input__title">
+                {{ field }}
+        </div>
+        {% endfor %}
+
+
+    </div>
+
+
+    <button type="submit" class="btn registeration__btn-login _revers">Войти</button>
+    <a href="{% url 'register' %}" class="btn registeration__btn-login _revers">Регистрация</a>
+
+</form>

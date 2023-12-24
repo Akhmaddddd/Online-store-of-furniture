@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {{ title }}
+    </title>
+    <!-- Css - Стили -->
+    {% include 'components/_style.html' %}
+
+</head>
+
+<body>
+
+{% include 'components/_nav.html' %}
+
+<!-- /.nav -->
+<div class="wrapper">
+
+
+    <header class="header">
+        {% for message in messages %}
+        <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        <div class="container">
+            <div class="header__content">
+                {% include 'components/_header__bar.html' %}
+
+
+                {% include 'components/_nav__catigories.html' %}
+
+                <!-- /.nav__catigories -->
+                {% block slider %}
+                {% include 'components/_slider.html' %}
+                {% endblock slider %}
+            </div>
+            <!-- /.header__content -->
+        </div>
+        <!-- /.container -->
+    </header>
+
+    <!-- /.header -->
+    {% block main %}
+
+    {% endblock main %}
+    <!-- /.main -->
+
+    {% include 'components/_footer.html' %}
+
+    <!-- /.footer -->
+</div>
+
+<!-- /.wrapper -->
+{% include 'components/_scripts.html' %}
+
+<!-- Js - скрипты -->
+</body>
+
+</html>

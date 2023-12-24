@@ -1,0 +1,73 @@
+{% load static %}
+
+<div class="product__slider-parameters">
+    <div class="product__raiting">
+        <div class="product__raiting-body">
+            <div class="product__raiting-active"></div>
+            <div class="product__raiting-items">
+                {% if fav > 0 and fav < 3  %}
+                <input type="radio" name="raiting" value="1" class="product__raiting-links">
+                {% endif %}
+                
+            </div>
+        </div>
+        <div class="product__raiting-value">3.4</div>
+    </div>
+    <h1 class="product__title">{{product.title}}</h1>
+    <span class="product__categories">{{ product.category }}</span>
+    <div class="product__links">
+        <h2 class="product__links-price"><span>{{ product.price }}</span> $</h2>
+        {% if product.quantity > 0 %}
+        <a href="{% url 'to_cart' product.pk 'add' %}" class="product__links-buy">Купить</a>
+        {% else %}
+        <a href="" class="product__links-buy">Нет в наличии</a>
+        {% endif %}
+
+    </div>
+    <ul class="paremeters__list">
+        <li class="paremetes__list-item">
+            <h3 class="paremeters__list-title">Цвет</h3>
+
+
+
+                <div class="parameters__color">
+
+                    <img width="24px" height="24px" src="{{ colors.url }}" alt="">
+
+                </div>
+
+
+
+
+
+
+        </li>
+
+        <li class="paremetes__list-item">
+            <h3 class="paremeters__list-title">Количество</h3>
+
+
+                <div class="paremeters__count"><span>{{ product.quantity }}</span></div>
+
+
+
+
+
+
+        </li>
+
+        <li class="paremetes__list-item">
+            <h3 class="paremeters__list-title">Размер (Д × Ш × В)</h3>
+
+                <div class="paremeters__size">{{ product.length }} x {{ product.width }} x {{ product.height }}</div>
+
+
+
+        </li>
+    </ul>
+
+    <p class="product__descr">
+        <span class="product__descr-title">Описание</span>
+        {{ product.description }}
+    </p>
+</div>

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block slider %}
+{% endblock slider %}
+
+
+{% block main %}
+
+<main class="main">
+            <div class="profile">
+                <div class="container">
+                    <div class="profile__content">
+                        <form class="profile__form">
+                            <h2 class="profile__title">Личные данные</h2>
+                                <img width="100px" height="100px" src="{{ profile.get_photo }}" alt="">
+                            <div class="profile__form-grid">
+
+                                <div class="input__title">
+                                    <h2>Имя</h2>
+
+                                    <p class="contact__section-input">{{ profile.user.first_name }}</p>
+                                </div>
+                                <div class="input__title">
+                                    <h2>E-mail</h2>
+                                    <p class="contact__section-input">{{ profile.user.email }}</p>
+                                </div>
+                                <div class="input__title">
+                                    <h2>Фамилия</h2>
+                                    <p class="contact__section-input">{{ profile.user.last_name }}</p>
+                                </div>
+                                <div class="input__title">
+                                    <h2>Номер телефона</h2>
+                                    <p class="contact__section-input">{{ profile.phone_number }}</p>
+                                </div>
+                                
+                            </div>
+                            <a href="{% url 'change_account' %}" class="btn profile__btn">Изменить Аккаунт</a>
+                            <a href="{% url 'change_profile' %}" class="btn profile__btn">Изменить Профиль</a>
+
+                        </form>
+                        <div class="profile__orders">
+                            <h2 class="profile__title">Мои заказы</h2>
+
+                            <table class="profile__table">
+                                <tr>
+                                    <td colspan="4">Товар</td>
+                                    <td>Количество</td>
+                                    <td>Цена</td>
+                                    <td>Дата</td>
+                                </tr>
+                                {% for order in user_orders %}
+                                <tr >
+                                    <td colspan="4" class="profile__title-adaptive">
+                                        <div class="tabel__item">
+
+                                            <span>{{ order.product }}
+                                                </span>
+                                        </div>
+                                    </td>
+                                    <td class="profile__tabel-data">{{ order.quantity }}</td>
+                                    <td class="profile__tabel-data">{{ order.final_price }}</td>
+                                    <td class="profile__tabel-data">{{ order.added_at }}</td>
+                                </tr>
+                                {% endfor %}
+
+                                <!-- Не трогать - это заглушка для корректного отображения таблицы -->
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <!-- Не трогать - это заглушка для корректного отображения таблицы -->
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock main %}

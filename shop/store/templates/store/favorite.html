@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block slider %}
+{% endblock slider %}
+
+
+{% block main %}
+
+<main class="main">
+            <div class="container">
+                <div class="favorites">
+
+                    <div class="favorites__txt">
+
+                        <h2 class="favorites__title">
+                            Избранное
+                        </h2>
+
+                        <span class="favorites__title-count"> <span>4</span> предметов</span>
+
+                    </div>
+
+                    <div class="products__content">
+                        {% for product in products %}
+                        {% include 'store/components/_product_card.html' %}
+                        {% endfor %}
+
+
+
+
+                    </div>
+                    <!-- /.products__content -->
+                </div>
+            </div>
+        </main>
+
+
+
+
+{% endblock main %}

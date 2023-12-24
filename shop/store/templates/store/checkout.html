@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block slider %}
+{% endblock slider %}
+
+
+{% block main %}
+
+
+<main class="main">
+    <div class="profile">
+        <div class="container">
+            <section class="basket">
+                <form class="products__form">
+
+
+                    <a href="{% url 'my_cart' %}" class="btn products__form-btn">Назад в корзину</a>
+
+                </form>
+                <div class="basket__text">
+                    <h1 class="basket__title">Заказанные товары</h1>
+                    <span class="basket__count"><span>{{ order.get_cart_total_quantity }}</span> предмета</span>
+                </div>
+                {% for item in items %}
+                <div class="basket__item">
+                    <a class="basket__item-img">
+                        <img src="{{ item.product.get_image_product }}" alt="product">
+                    </a>
+                    <div class="basket__item-content">
+                        <div class="basket__item-text">
+                            <h2 class="basket__item-title">{{ item.product.title }}</h2>
+                            <p class="basket__item-price">
+
+
+                                <span class="price"><span>{{ item.get_total_price }}</span>$</span>
+
+                            </p>
+                        </div>
+                        <div class="basket__options">
+                            <p class="basket__options-count">
+                                Цена за продукт:<span>{{ item.product.price }} $</span>
+                            </p>
+
+
+                            <div class="basket__options-count d-flex">
+
+
+                                Количество: <span>{{ item.quantity }}</span>
+
+
+                            </div>
+
+
+                            <p class="basket__options-size">
+                                Размер(Ш×Д×В): <span>{{ item.product.width }}×{{ item.product.length }}×{{ item.product.height }}</span>
+                            </p>
+                        </div>
+                    </div>
+                    {% if 'cart' in request.path %}
+                    <div class="basket__buttons">
+                        {% if item.product.quantity > 0 %}
+                        <a href="{% url 'to_cart' item.product.pk 'add' %}" class="basket__add">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        {% endif %}
+
+                        <a href="{% url 'to_cart' item.product.pk 'remove' %}" class="basket__remove">
+                            <i class="fas fa-minus"></i>
+                        </a>
+                    </div>
+                    {% endif %}
+
+                </div>
+                {% endfor %}
+                <form class="products__form">
+
+                <span>Итоговая стоимость:<span
+                        class="products__form-price">{{ order.get_cart_total_price }} $</span> </span>
+
+
+                </form>
+
+
+                <div class="profile">
+                <div class="container">
+                    <div class="profile__content">
+                        <form class="profile__form" method="post" action="{% url 'payment' %}">
+                            <h2 class="profile__title">Ваши данные</h2>
+                            <div class="profile__form-grid">
+                                {% csrf_token %}
+                                {% for field in customer_form %}
+                                <div class="input__title">
+                                    {{ field }}
+                                </div>
+                                {% endfor %}
+                                {% csrf_token %}
+                                {% for field in shipping_form %}
+                                <div class="input__title">
+                                    {{ field }}
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                            <button type="submit" class="btn profile__btn">Оформить заказ</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            </section>
+            <!-- /.basket -->
+
+
+            <!-- /.products -->
+
+        </div>
+    </div>
+</main>
+
+
+{% endblock main %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block main %}
+
+<main class="main">
+    <div class="container">
+        {% for category in categories %}
+        {% if category.subcategories.all %}
+        <section class="products">
+            <h2 class="products__title">{{ category.title }}</h2>
+            {% for cat in category.subcategories.all %}
+            {% if cat.products.all %}
+            <h2 class="products__title">{{ cat }}</h2>
+            <div class="products__content">
+
+                <!-- /.products__item -->
+                {% for product in cat.products.all %}
+                {% include 'store/components/_product_card.html' %}
+                {% endfor %}
+
+            </div>
+            {% endif %}
+            {% endfor %}
+            <!-- /.products__content -->
+        </section>
+        {% endif %}
+        {% endfor %}
+        <!-- /.products -->
+    </div>
+    <!-- /.container -->
+</main>
+{% endblock main %}
+
+

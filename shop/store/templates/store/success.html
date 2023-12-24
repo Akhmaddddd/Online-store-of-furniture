@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block slider %}
+{% endblock slider %}
+
+
+{% block main %}
+
+
+<div class="container">
+    <div class="content text-center">
+        <h1 class="basket__title">Ваша оплата прошла успешна ожидайте ответ менежера</h1>
+        <h1 class="basket__title">Вы можете продолжить делать покупки через кнопку ниже</h1>
+        <form class="products__form">
+
+            <a href="{% url 'product_list' %}" class="btn products__form-btn">На главную</a>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock main %}

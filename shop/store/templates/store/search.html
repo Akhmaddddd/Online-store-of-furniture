@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block slider %}
+{% endblock slider %}
+
+
+{% block main %}
+
+{% for product in products %}
+
+{% include 'store/components/_product_card.html' %}
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+{% endblock main %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block slider %}
+{% endblock slider %}
+
+
+{% block main %}
+
+<main class="main">
+    <div class="container">
+        <section class="contact__section">
+            <h1 class="contact__section-title">Рассылка на почты </h1>
+            <div class="contact__section-content">
+
+
+                <form class="contact__section-form" method="post" action="{% url 'send_mail' %}">
+                    {% csrf_token %}
+
+
+                    <h2 class="textarea__title">Сообщение</h2>
+                    <textarea placeholder="Введите текст сообщения" name="text" class="contact__section-message"
+                              cols="30" rows="10"></textarea>
+
+
+                    <div class="contact__section-btns">
+
+                        <button class="btn btns__send" type="submit">Отправить</button>
+                    </div>
+                </form>
+
+            </div>
+        </section>
+    </div>
+    <!-- /.container -->
+</main>
+
+
+{% endblock main %}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block slider %}
+{% endblock slider %}
+
+
+{% block main %}
+
+<main class="main">
+    <div class="registeration">
+        <div class="container">
+            <div class="registeration__content">
+
+                {% if 'change_account' in request.path %}
+                <form method="post" enctype="multipart/form-data" action="{% url 'change_account' %}" class="registeration__form active">
+                    <h2 class="registeration__title products__title">Изменение аккаунта</h2>
+                    <div class="registeration__form-grid">
+                        {% csrf_token %}
+
+                        {% for field in edit_account_form %}
+                        <div class="input__title">
+                            {{ field }}
+                        </div>
+                        {% endfor %}
+
+
+                    </div>
+
+                    <div class="registeration__btns">
+
+                        <button type="submit" class="btn registeration__btn">Изменить аккаунт</button>
+
+                    </div>
+
+
+
+                </form>
+                {% elif 'change_profile' in request.path %}
+                <form  method="post" enctype="multipart/form-data" action="{% url 'change_profile' %}" class="registeration__form active">
+                    <h2 class="registeration__title products__title">Изменение профиля</h2>
+                    <div class="registeration__form-grid">
+                        {% csrf_token %}
+
+                        {% for field in edit_profile_form %}
+                        <div class="input__title">
+                            {{ field }}
+                        </div>
+                        {% endfor %}
+
+
+                    </div>
+
+                    <div class="registeration__btns">
+
+                        <button type="submit" class="btn registeration__btn">Изменить профиль</button>
+
+                    </div>
+
+
+
+                </form>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock main %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block slider %}
+{% endblock slider %}
+
+
+{% block main %}
+<header class="header">
+            <div class="container">
+                <div class="header__content">
+
+
+                    <!-- /.nav__catigories -->
+
+                    <div class="product__slider">
+                        {% include 'store/components/_product__slider_content.html' %}
+
+
+                        {% include 'store/components/_product__slider_parameters.html' %}
+
+
+
+                    </div>
+                    <!-- /.product__slider -->
+
+
+                </div>
+                <!-- /.header__content -->
+            </div>
+            <!-- /.container -->
+        </header>
+{% include 'store/components/_main_detail_card.html' %}
+
+
+{% endblock main %}

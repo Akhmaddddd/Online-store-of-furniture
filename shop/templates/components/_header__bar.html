@@ -1,0 +1,64 @@
+{% load static %}
+<div class="header__bar">
+    <a href="#!" class="nav__bars-open">
+        <span class="burger"></span>
+        <span class="burger"></span>
+        <span class="burger"></span>
+    </a>
+
+    <a href="{% url 'product_list' %}" class="logo">
+        <img src="{% static 'store/assets/icons/LOGO.svg' %}" alt="logo">
+    </a>
+    <form class="header__search" role="search" method="get" action="{% url 'search' %}">
+        <i class="fal fa-search"></i>
+        <input name="q" type="text" class="header__search-txt" placeholder="Поиск">
+
+    </form>
+
+    <ul class="header__list">
+        <li>
+            <a href="./registration.html" class="header__list-item _truck">
+                <i class="far fa-truck"></i>
+                Доставка
+            </a>
+        </li>
+
+
+        <li>
+            <a href="{% url 'my_favorite' %}" class="header__list-item" id="_heart">
+
+            </a>
+        </li>
+
+
+        {% if request.user.is_authenticated %}
+        <li>
+            <a href="{% url 'my_cart' %}" class="header__list-item" id="_bag">
+
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'profile' request.user.pk %}" class="header__list-item" id="_profile">
+
+            </a>
+        </li>
+        {% endif %}
+        {% if not request.user.is_authenticated %}
+        <li>
+            <a href="{% url 'register' %}" class="header__list-item" id="_login">
+                <i class=""></i> <!-- Замените "far fa-user" на класс вашей новой иконки -->
+                <img height="17 px" src="{% static 'store/assets/icons/1286853.png' %}" alt="">
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'logout' %}" class="header__list-item" id="_logout">
+                <i class=""></i> <!-- Замените "far fa-user" на класс вашей новой иконки -->
+                <img height="17 px" src="{% static 'store/assets/icons/logout.png' %}" alt="">
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+
+</div>
