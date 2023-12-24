@@ -141,8 +141,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'bahtiyourhujaev@gmail.com'
-EMAIL_HOST_PASSWORD = 'lcneskvvyyplykod'
-
-STRIPE_PUBLIC_KEY = 'pk_test_51ONZSKJXflJcS3OB70a0bqNyQSjtVf1rsgg2JQMkvKlP5DaNfQoZWnzsLU3gcoZej6ULSuvYIl9KkwOUCu5647EB00byPCB7ln'
-STRIPE_SECRET_KEY = 'sk_test_51ONZSKJXflJcS3OBaMQFK0KsPWdWMOU8hih8lsn2PclO1Bdqnf9fypGnP7QFLNVWeYJs7mnZlwMY3cNsP7M93qFy00n0F9q2Um'
+EMAIL_HOST_USER = 'Sender email'
+EMAIL_HOST_PASSWORD = 'secret token of google app'
+#You can choose any type of payment, in my case STRIPE
+STRIPE_PUBLIC_KEY = 'Stripe public key '
+STRIPE_SECRET_KEY = 'stripe secret key'
